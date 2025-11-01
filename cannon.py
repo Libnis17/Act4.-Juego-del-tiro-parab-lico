@@ -71,8 +71,16 @@ def move():
     draw()
 
     for target in targets:
-        if not inside(target):
-            return
+        if inside(ball):
+    speed.y -= 0.35
+    ball.move(speed)
+     else:
+      # si la bola salió de la pantalla, reiniciarla (lista para disparar de nuevo)
+      ball.x = -200
+      ball.y = -200
+      speed.x = 0
+      speed.y = 0
+            
 
     ontimer(move, 50)
 
