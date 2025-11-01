@@ -1,5 +1,6 @@
 """Cannon, hitting targets with projectiles.
 
+
 Exercises
 
 1. Keep score by counting target hits.
@@ -62,11 +63,17 @@ def move():
         ball.move(speed)
 
     dupe = targets.copy()
-    targets.clear()
-
     for target in dupe:
-        if abs(target - ball) > 13:
-            targets.append(target)
+    # si colisionó con la bola, no lo volvemos a agregar (es "golpeado")
+    if abs(target - ball) <= 13:
+        continue
+
+    # si el target salió por la izquierda, lo reposicionamos a la derecha
+    if target.x < -200:
+        target.x = 200
+        target.y = randrange(-150, 150)
+
+    targets.append(target)
 
     draw()
 
